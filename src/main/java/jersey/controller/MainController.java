@@ -79,7 +79,7 @@ public class MainController {
 	public String listProductHandler(Model model, //
 			@RequestParam(value = "name", defaultValue = "") String likeName,
 			@RequestParam(value = "page", defaultValue = "1") int page) {
-		final int maxResult = 5;
+		final int maxResult = 8;
 		final int maxNavigationPage = 10;
 
 		PaginationResult<ProductInfo> result = productDAO.queryProducts(page, //
@@ -88,10 +88,31 @@ public class MainController {
 		model.addAttribute("paginationProducts", result);
 		return "productList";
 	}
+	
+	@RequestMapping({ "/product" })
+	public String viewProductDetail(HttpServletRequest request, Model model, //
+			@RequestParam(value = "id", defaultValue = "") String code) {
+
+		Product product = null;
+		if (code != null && code.length() > 0) {
+			product = productDAO.findProduct(code);
+		}
+		if (product != null) {
+
+			// 
+			CartInfo cartInfo = Utils.getCartInSession(request);
+
+			ProductInfo productInfo = new ProductInfo(product);
+
+			cartInfo.addProduct(productInfo, 1);
+		}
+
+		return "productDetailInfo";
+	}
 
 	@RequestMapping({ "/buyProduct" })
 	public String listProductHandler(HttpServletRequest request, Model model, //
-			@RequestParam(value = "code", defaultValue = "") String code) {
+			@RequestParam(value = "id", defaultValue = "") String code) {
 
 		Product product = null;
 		if (code != null && code.length() > 0) {
@@ -112,7 +133,7 @@ public class MainController {
 
 	@RequestMapping({ "/shoppingCartRemoveProduct" })
 	public String removeProductHandler(HttpServletRequest request, Model model, //
-			@RequestParam(value = "code", defaultValue = "") String code) {
+			@RequestParam(value = "id", defaultValue = "") String code) {
 		Product product = null;
 		if (code != null && code.length() > 0) {
 			product = productDAO.findProduct(code);
@@ -252,7 +273,7 @@ public class MainController {
 
 	@RequestMapping(value = { "/productImage" }, method = RequestMethod.GET)
 	public void productImage(HttpServletRequest request, HttpServletResponse response, Model model,
-			@RequestParam("code") String code) throws IOException {
+			@RequestParam("id") String code) throws IOException {
 		Product product = null;
 		if (code != null) {
 			product = this.productDAO.findProduct(code);

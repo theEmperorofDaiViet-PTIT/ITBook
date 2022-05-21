@@ -20,14 +20,14 @@ public class Order implements Serializable {
     @Column(name = "ID", length = 50)
     private String id;
 
-    @Column(name = "Order_Date", nullable = false)
-    private Date orderDate;
+    @Column(name = "Created_At", nullable = false)
+    private Date createdAt;
 
     @Column(name = "Order_Num", nullable = false)
     private int orderNum;
 
-    @Column(name = "Amount", nullable = false)
-    private double amount;
+    @Column(name = "Total", nullable = false)
+    private double total;
 
     @Column(name = "Customer_Name", length = 255, nullable = false)
     private String customerName;
@@ -49,12 +49,12 @@ public class Order implements Serializable {
         this.id = id;
     }
 
-    public Date getOrderDate() {
-        return orderDate;
+    public Date getCreatedAt() {
+        return createdAt;
     }
 
-    public void setOrderDate(Date orderDate) {
-        this.orderDate = orderDate;
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
     }
 
     public int getOrderNum() {
@@ -65,12 +65,12 @@ public class Order implements Serializable {
         this.orderNum = orderNum;
     }
 
-    public double getAmount() {
-        return amount;
+    public double getTotal() {
+        return total;
     }
 
-    public void setAmount(double amount) {
-        this.amount = amount;
+    public void setTotal(double total) {
+        this.total = total;
     }
 
     public String getCustomerName() {

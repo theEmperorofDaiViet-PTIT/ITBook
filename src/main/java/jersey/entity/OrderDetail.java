@@ -37,8 +37,8 @@ public class OrderDetail implements Serializable {
     @Column(name = "Price", nullable = false)
     private double price;
 
-    @Column(name = "Amount", nullable = false)
-    private double amount;
+    @Column(name = "SubTotal", nullable = false)
+    private double subTotal;
 
     public String getId() {
         return id;
@@ -80,12 +80,12 @@ public class OrderDetail implements Serializable {
         this.price = price;
     }
 
-    public double getAmount() {
-        return amount;
+    public double getSubTotal() {
+        return subTotal;
     }
 
-    public void setAmount(double amount) {
-        this.amount = amount;
+    public void setSubTotal(double subTotal) {
+        this.subTotal = subTotal;
     }
 
 }

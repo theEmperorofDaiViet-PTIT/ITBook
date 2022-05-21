@@ -2,14 +2,21 @@ package jersey.dao;
 
 import java.io.IOException;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.NoResultException;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
+
+import jersey.entity.Order;
+import jersey.entity.OrderDetail;
 import jersey.entity.Product;
 import jersey.form.ProductForm;
+import jersey.model.OrderDetailInfo;
+import jersey.model.OrderInfo;
+import jersey.model.ProductAuthorInfo;
 import jersey.model.ProductInfo;
 import jersey.pagination.PaginationResult;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,47 +31,51 @@ public class ProductDAO {
     @Autowired
     private SessionFactory sessionFactory;
 
-    public Product findProduct(String code) {
+    public Product findProduct(String id) {
         try {
-            String sql = "Select e from " + Product.class.getName() + " e Where e.code =:code ";
+            String sql = "Select e from " + Product.class.getName() + " e Where e.id =:id ";
 
             Session session = this.sessionFactory.getCurrentSession();
             Query<Product> query = session.createQuery(sql, Product.class);
-            query.setParameter("code", code);
+            query.setParameter("id", id);
             return (Product) query.getSingleResult();
         } catch (NoResultException e) {
             return null;
         }
     }
     
-    public ProductInfo findProductInfo(String code) {
-        Product product = this.findProduct(code);
+    public ProductInfo findProductInfo(String id) {
+        Product product = this.findProduct(id);
         if (product == null) {
             return null;
         }
-        return new ProductInfo(product.getCode(), product.getName(), product.getPrice());
+        return new ProductInfo(product.getId(), product.getTitle(), product.getPrice());
     }
 
     @Transactional(propagation = Propagation.REQUIRES_NEW, rollbackFor = Exception.class)
     public void save(ProductForm productForm) {
 
         Session session = this.sessionFactory.getCurrentSession();
-        String code = productForm.getCode();
+        String id = productForm.getId();
 
         Product product = null;
 
         boolean isNew = false;
-        if (code != null) {
-            product = this.findProduct(code);
+        if (id != null) {
+            product = this.findProduct(id);
         }
         if (product == null) {
             isNew = true;
             product = new Product();
-            product.setCreateDate(new Date());
+            product.setCreatedAt(new Date());
         }
-        product.setCode(code);
-        product.setName(productForm.getName());
+        product.setId(id);
+        product.setTitle(productForm.getTitle());
         product.setPrice(productForm.getPrice());
+        product.setCategoryId(productForm.getCategoryId());
+        product.setDescription(productForm.getDescription());
+        product.setLanguage(productForm.getLanguage());
+        product.setNumPages(productForm.getNumPages());
 
         if (productForm.getFileData() != null) {
             byte[] image = null;
@@ -79,19 +90,31 @@ public class ProductDAO {
         if (isNew) {
             session.persist(product);
         }
-        // Nếu có lỗi tại DB, ngoại lệ sẽ ném ra ngay lập tức
+
+        session.flush();
+    }
+    
+    @Transactional(propagation = Propagation.REQUIRES_NEW, rollbackFor = Exception.class)
+    public void delete(String productID) {
+
+        Session session = this.sessionFactory.getCurrentSession();
+        
+        Product product = this.findProduct(productID);
+        session.delete(product);
+        
+ 
         session.flush();
     }
     
     public PaginationResult<ProductInfo> queryProducts(int page, int maxResult, int maxNavigationPage,
             String likeName) {
         String sql = "Select new " + ProductInfo.class.getName() //
-                + "(p.code, p.name, p.price) " + " from "//
+                + "(p.id, p.title, p.price) " + " from "//
                 + Product.class.getName() + " p ";
         if (likeName != null && likeName.length() > 0) {
-            sql += " Where lower(p.name) like :likeName ";
+            sql += " Where lower(p.title) like :likeName ";
         }
-        sql += " order by p.createDate desc ";
+        sql += " order by p.createdAt desc ";
         // 
         Session session = this.sessionFactory.getCurrentSession();
         Query<ProductInfo> query = session.createQuery(sql, ProductInfo.class);
@@ -105,5 +128,7 @@ public class ProductDAO {
     public PaginationResult<ProductInfo> queryProducts(int page, int maxResult, int maxNavigationPage) {
         return queryProducts(page, maxResult, maxNavigationPage, null);
     }
+  ////////////////////////////////////////////////////////////////////////  
+
     
 }
