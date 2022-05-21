@@ -6,9 +6,9 @@ import java.util.List;
 public class OrderInfo {
 
     private String id;
-    private Date orderDate;
+    private Date createdAt;
     private int orderNum;
-    private double amount;
+    private double total;
 
     private String customerName;
     private String customerAddress;
@@ -22,13 +22,13 @@ public class OrderInfo {
     }
 
     // Sử dụng cho Hibernate Query.
-    public OrderInfo(String id, Date orderDate, int orderNum, //
-            double amount, String customerName, String customerAddress, //
+    public OrderInfo(String id, Date createdAt, int orderNum, //
+            double total, String customerName, String customerAddress, //
             String customerEmail, String customerPhone) {
         this.id = id;
-        this.orderDate = orderDate;
+        this.createdAt = createdAt;
         this.orderNum = orderNum;
-        this.amount = amount;
+        this.total = total;
 
         this.customerName = customerName;
         this.customerAddress = customerAddress;
@@ -44,12 +44,12 @@ public class OrderInfo {
         this.id = id;
     }
 
-    public Date getOrderDate() {
-        return orderDate;
+    public Date getCreatedAt() {
+        return createdAt;
     }
 
-    public void setOrderDate(Date orderDate) {
-        this.orderDate = orderDate;
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
     }
 
     public int getOrderNum() {
@@ -60,12 +60,12 @@ public class OrderInfo {
         this.orderNum = orderNum;
     }
 
-    public double getAmount() {
-        return amount;
+    public double getTotal() {
+        return total;
     }
 
-    public void setAmount(double amount) {
-        this.amount = amount;
+    public void setTotal(double total) {
+        this.total = total;
     }
 
     public String getCustomerName() {

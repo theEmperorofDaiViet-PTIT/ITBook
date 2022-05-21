@@ -26,18 +26,22 @@ public class ProductFormValidator implements Validator {
 		ProductForm productForm = (ProductForm) target;
 
 		// Kiểm tra các trường (field) của ProductForm.
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "code", "NotEmpty.productForm.code");
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "name", "NotEmpty.productForm.name");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "id", "NotEmpty.productForm.id");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "title", "NotEmpty.productForm.title");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "price", "NotEmpty.productForm.price");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "categoryId", "NotEmpty.productForm.categoryId");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "description", "NotEmpty.productForm.description");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "language", "NotEmpty.productForm.language");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "title", "NotEmpty.productForm.numPages");
 
-		String code = productForm.getCode();
-		if (code != null && code.length() > 0) {
-			if (code.matches("\\s+")) {
-				errors.rejectValue("code", "Pattern.productForm.code");
+		String id = productForm.getId();
+		if (id != null && id.length() > 0) {
+			if (id.matches("\\s+")) {
+				errors.rejectValue("id", "Pattern.productForm.id");
 			} else if (productForm.isNewProduct()) {
-				Product product = productDAO.findProduct(code);
+				Product product = productDAO.findProduct(id);
 				if (product != null) {
-					errors.rejectValue("code", "Duplicate.productForm.code");
+					errors.rejectValue("id", "Duplicate.productForm.id");
 				}
 			}
 		}

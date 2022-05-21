@@ -3,13 +3,14 @@
    <head>
       <meta charset="UTF-8">
       <title>Login</title>
+      <link rel="icon" type="image/x-icon" href="/images/icon.png">
       <link rel="stylesheet" type="text/css" th:href="@{/styles.css}">
    </head>
    <body>
       <th:block th:include="/_header"></th:block>
       <th:block th:include="/_menu"></th:block>
       
-      <div class="page-title">Login (For Employee, Manager)</div>
+      <div class="page-title">Login</div>
       
       <div class="login-container">
          <h3>Enter username and password</h3>
@@ -27,7 +28,7 @@
             th:action="@{/j_spring_security_check}">
             <table>
                <tr>
-                  <td>User Name *</td>
+                  <td>Username *</td>
                   <td><input name="userName" /></td>
                </tr>
                <tr>
@@ -46,15 +47,7 @@
          
          <span class="error-message" th:utext="${error}"></span>
       </div>
-      
-      <div style="text-align:left">
-          <h3>User/Password:</h3>
-          <ul>        
-             <li>employee1/123</li>
-             <li>manager1/123</li>   
-          </ul>
-      </div>
-      
+            
       <th:block th:include="/_footer"></th:block>
       
    </body>

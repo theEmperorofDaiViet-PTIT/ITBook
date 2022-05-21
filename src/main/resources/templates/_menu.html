@@ -12,14 +12,24 @@
    </a>
    |
    <th:block sec:authorize="hasAnyRole('ROLE_MANAGER','ROLE_EMPLOYEE')">
-      <a th:href="@{/admin/orderList}">
+      <a th:href="@{/account/admin/orderList}">
       Order List
+      </a>
+      |
+      <a th:href="@{/account/admin/regOrderList}">
+      Registered Order List
       </a>
       |
    </th:block>
    <th:block sec:authorize="hasRole('ROLE_MANAGER')">
-      <a th:href="@{/admin/product}">
+      <a th:href="@{/account/admin/product}">
       Create Product
+      </a>
+      |
+   </th:block>
+   <th:block sec:authorize="hasRole('ROLE_CUSTOMER')">
+      <a th:href="@{/account/customer/orderList}">
+      History
       </a>
       |
    </th:block>

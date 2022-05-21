@@ -3,40 +3,40 @@ package jersey.model;
 import jersey.entity.Product;
 
 public class ProductInfo {
-    private String code;
-    private String name;
+    private String id;
+    private String title;
     private double price;
 
     public ProductInfo() {
     }
 
     public ProductInfo(Product product) {
-        this.code = product.getCode();
-        this.name = product.getName();
+        this.id = product.getId();
+        this.title = product.getTitle();
         this.price = product.getPrice();
     }
 
     // Sử dụng trong JPA/Hibernate query
-    public ProductInfo(String code, String name, double price) {
-        this.code = code;
-        this.name = name;
+    public ProductInfo(String id, String title, double price) {
+        this.id = id;
+        this.title= title;
         this.price = price;
     }
 
-    public String getCode() {
-        return code;
+    public String getId() {
+        return id;
     }
 
-    public void setCode(String code) {
-        this.code = code;
+    public void setId(String id) {
+        this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getTitle() {
+        return title;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public double getPrice() {

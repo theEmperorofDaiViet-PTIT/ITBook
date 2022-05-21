@@ -3,6 +3,7 @@
    <head>
       <meta charset="UTF-8">
       <title>Product List</title>
+      <link rel="icon" type="image/x-icon" href="/images/icon.png">
       <link rel="stylesheet" type="text/css" th:href="@{/styles.css}">
    </head>
    <body>
@@ -22,7 +23,7 @@
          <h3>Order Summary:</h3>
          <ul>
             <li>Total:
-               <span class="total" th:utext="${#numbers.formatDecimal(orderInfo.amount,3,2,'COMMA')}">         
+               $<span class="total" th:utext="${#numbers.formatDecimal(orderInfo.total,2,2,'COMMA')}">         
                </span>
             </li>
          </ul>
@@ -30,18 +31,18 @@
       <br/>
       <table border="1" style="width:100%">
          <tr>
-            <th>Product Code</th>
-            <th>Product Name</th>
+            <th>Product ID</th>
+            <th>Product Title</th>
             <th>Quantity</th>
             <th>Price</th>
-            <th>Amount</th>
+            <th>Subtotal</th>
          </tr>
          <tr th:each="orderDetailInfo : ${orderInfo.details}">
-            <td th:utext="${orderDetailInfo.productCode}"></td>
-            <td th:utext="${orderDetailInfo.productName}"></td>
-            <td th:utext="${orderDetailInfo.quanity}"></td>
-            <td th:utext="${#numbers.formatDecimal(orderDetailInfo.price,3,2,'COMMA')}"></td>
-            <td th:utext="${#numbers.formatDecimal(orderDetailInfo.amount,3,2,'COMMA')}"></td>
+            <td th:utext="${orderDetailInfo.productId}"></td>
+            <td th:utext="${orderDetailInfo.productTitle}"></td>
+            <td th:utext="${orderDetailInfo.quantity}"></td>
+            <td th:utext="${#numbers.formatDecimal(orderDetailInfo.price,2,2,'COMMA')}"></td>
+            <td th:utext="${#numbers.formatDecimal(orderDetailInfo.subTotal,2,2,'COMMA')}"></td>
          </tr>
       </table>
       

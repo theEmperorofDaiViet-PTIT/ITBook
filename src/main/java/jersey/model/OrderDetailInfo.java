@@ -4,26 +4,26 @@ public class OrderDetailInfo {
 
     private String id;
 
-    private String productCode;
-    private String productName;
+    private String productId;
+    private String productTitle;
 
     private int quantity;
     private double price;
-    private double amount;
+    private double subTotal;
 
     public OrderDetailInfo() {
 
     }
 
     // Sử dụng cho JPA/Hibernate Query.
-    public OrderDetailInfo(String id, String productCode, //
-            String productName, int quantity, double price, double amount) {
+    public OrderDetailInfo(String id, String productId, //
+            String productTitle, int quantity, double price, double subTotal) {
         this.id = id;
-        this.productCode = productCode;
-        this.productName = productName;
+        this.productId = productId;
+        this.productTitle = productTitle;
         this.quantity = quantity;
         this.price = price;
-        this.amount = amount;
+        this.subTotal = subTotal;
     }
 
     public String getId() {
@@ -34,28 +34,28 @@ public class OrderDetailInfo {
         this.id = id;
     }
 
-    public String getProductCode() {
-        return productCode;
+    public String getProductId() {
+        return productId;
     }
 
-    public void setProductCode(String productCode) {
-        this.productCode = productCode;
+    public void setProductId(String productId) {
+        this.productId = productId;
     }
 
-    public String getProductName() {
-        return productName;
+    public String getProductTitle() {
+        return productTitle;
     }
 
-    public void setProductName(String productName) {
-        this.productName = productName;
+    public void setProductTitle(String productTitle) {
+        this.productTitle = productTitle;
     }
 
-    public int getQuanity() {
+    public int getQuantity() {
         return quantity;
     }
 
-    public void setQuanity(int quanity) {
-        this.quantity = quanity;
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 
     public double getPrice() {
@@ -66,12 +66,12 @@ public class OrderDetailInfo {
         this.price = price;
     }
 
-    public double getAmount() {
-        return amount;
+    public double getSubTotal() {
+        return subTotal;
     }
 
-    public void setAmount(double amount) {
-        this.amount = amount;
+    public void setSubTotal(double subTotal) {
+        this.subTotal = subTotal;
     }
     
 }

@@ -24,8 +24,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	public void configure(AuthenticationManagerBuilder auth) throws Exception {
 
-		// Sét đặt dịch vụ để tìm kiếm User trong Database.
-		// Và sét đặt PasswordEncoder.
 		auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
 
 	}
@@ -34,34 +32,29 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 
 		http.csrf().disable();
+		
+		http.authorizeRequests().antMatchers("/account/accountInfo","/account/shoppingCartConfirmation")
+		.access("hasAnyRole('ROLE_CUSTOMER','ROLE_EMPLOYEE', 'ROLE_MANAGER')");
 
-		// Các yêu cầu phải login với vai trò ROLE_EMPLOYEE hoặc ROLE_MANAGER.
-		// Nếu chưa login, nó sẽ redirect tới trang /admin/login.
-		http.authorizeRequests().antMatchers("/admin/orderList", "/admin/order", "/admin/accountInfo")//
+		http.authorizeRequests().antMatchers("/account/admin/orderList", "/account/admin/order")
 				.access("hasAnyRole('ROLE_EMPLOYEE', 'ROLE_MANAGER')");
 
-		// Các trang chỉ dành cho MANAGER
-		http.authorizeRequests().antMatchers("/admin/product").access("hasRole('ROLE_MANAGER')");
+		http.authorizeRequests().antMatchers("/account/admin/product").access("hasRole('ROLE_MANAGER')");
+		
+		http.authorizeRequests().antMatchers("/account/customer/orderList","/account/customer/order").access("hasRole('ROLE_CUSTOMER')");
 
-		// Khi người dùng đã login, với vai trò XX.
-		// Nhưng truy cập vào trang yêu cầu vai trò YY,
-		// Ngoại lệ AccessDeniedException sẽ ném ra.
 		http.authorizeRequests().and().exceptionHandling().accessDeniedPage("/403");
 
-		// Cấu hình cho Login Form.
-		http.authorizeRequests().and().formLogin()//
+		http.authorizeRequests().and().formLogin()
 
-				// 
 				.loginProcessingUrl("/j_spring_security_check") // Submit URL
-				.loginPage("/admin/login")//
-				.defaultSuccessUrl("/admin/accountInfo")//
-				.failureUrl("/admin/login?error=true")//
-				.usernameParameter("userName")//
+				.loginPage("/account/login")
+				.defaultSuccessUrl("/account/accountInfo")
+				.failureUrl("/account/login?error=true")
+				.usernameParameter("userName")
 				.passwordParameter("password")
 
-				// Cấu hình cho trang Logout.
-				// (Sau khi logout, chuyển tới trang home)
-				.and().logout().logoutUrl("/admin/logout").logoutSuccessUrl("/");
+				.and().logout().logoutUrl("/account/logout").logoutSuccessUrl("/");
 
 	}
 }
