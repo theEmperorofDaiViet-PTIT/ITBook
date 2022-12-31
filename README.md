@@ -23,7 +23,7 @@
 </details>
 
 <p align="center">
-    <img src="/src/main/resources/static/images/icon.png">
+    <img src="/src/main/resources/static/images/icon.png" width="128" height="128">
 </p>
 
 # About The Project
@@ -44,6 +44,12 @@ An simple bookstore web application selling programming books.
 # Getting Started
 
 ## Prerequisites
+Before cloning and using this application, you'll need to install these things on your computer:
+* [Java SE 8](https://www.oracle.com/java/technologies/javase/javase8u211-later-archive-downloads.html): Of course you need to have Java installed to run a Java application. I used the widely-used Java SE 8 (JDK 1.8), but I think it works fine with other versions, as well.
+* [Spring Tool Suite 4](https://spring.io/tools): an Eclipse-based IDE to develop Spring applications. 
+It provides a ready-to-use environment to implement, run, deploy, and debug the application. 
+It validates your application and provides quick fixes for the applications.
+* [MySQL 8.0](https://dev.mysql.com/downloads/installer/): an open source relational database management system that was originally released in 1995. MySQL is popular among all databases, and is ranked as the 2nd most popular database, only slightly trailing Oracle Database. Among open source databases, MySQL is the most popular database in use today and known as one of the most reliable and performative databases out there.
 
 ## Installation
 
