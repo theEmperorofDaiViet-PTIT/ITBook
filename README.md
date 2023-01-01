@@ -52,6 +52,17 @@ It validates your application and provides quick fixes for the applications.
 * [MySQL 8.0](https://dev.mysql.com/downloads/installer/): an open source relational database management system that was originally released in 1995. MySQL is popular among all databases, and is ranked as the 2nd most popular database, only slightly trailing Oracle Database. Among open source databases, MySQL is the most popular database in use today and known as one of the most reliable and performative databases out there.
 
 ## Installation
+You can install this application by cloning this repository into your current working directory:
+```sh
+git clone https://github.com/theEmperorofDaiViet-PTIT/ITBook.git
+```
+After cloning the repository, you can open the project by Spring Tool Suite.
+
+Open the application.properties file in [/src/main/resources](/src/main/resources) to change the information about the datasource to fit your own settings.
+
+Open MySQL and create a database according to the script in finalDatabase.sql file in [/src/main/resources](/src/main/resources).
+
+Finally, back to Spring Tool Suite and run the application.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
