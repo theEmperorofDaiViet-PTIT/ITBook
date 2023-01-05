@@ -67,6 +67,20 @@ Finally, back to Spring Tool Suite and run the application.
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 # Key Features
+- Product page
+* Log in/ Log out
+- Cart (in all case: Unregistered User, Registered User but added items to Cart before logging in, Registered User logged in)
+* Place an Order using Cart
+
+- Roles & their functionality:
+  - Unregistered User: can place an Order without registering an account, but must provide information
+  - ROLE_CUSTOMER: can see all its Orders
+  - ROLE_EMPLOYEE: can see all Orders of all Users
+  - ROLE_MANAGER: can see all Orders of all Users; create, update, delete Products
+  
+* Register (CUSTOMER only)
+- Validate input
+* Online support (by Facebook Messenger's Chat Plugin)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
