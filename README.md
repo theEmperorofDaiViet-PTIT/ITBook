@@ -1,4 +1,4 @@
-﻿<a name="readme-top"></a>
+<a name="readme-top"></a>
 <!-- TABLE OF CONTENTS -->
 <details>
   <summary>Table of Contents</summary>
@@ -67,24 +67,27 @@ Finally, back to Spring Tool Suite and run the application.
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 # Key Features
-- Product page
-* Log in/ Log out
-- Cart (in all case: Unregistered User, Registered User but added items to Cart before logging in, Registered User logged in)
-* Place an Order using Cart
-
-- Roles & their functionality:
-  - Unregistered User: can place an Order without registering an account, but must provide information
-  - ROLE_CUSTOMER: can see all its Orders
-  - ROLE_EMPLOYEE: can see all Orders of all Users
-  - ROLE_MANAGER: can see all Orders of all Users; create, update, delete Products
-  
-* Register (CUSTOMER only)
-- Validate input
-* Online support (by Facebook Messenger's Chat Plugin)
+### Product page
+### Log in/ Log out
+### Register (CUSTOMER only)
+### Cart 
+### Place an Order using Cart
+### Validate input
+### Roles & their functionalities:
+  - <b>Unregistered User</b>: browse Products, add items to Cart and place an Order without registering an account, but must provide information before submit the Order
+  - <b>ROLE_CUSTOMER</b>: browse Products, add items to Cart, place an Order and see all its previous Orders
+  - <b>ROLE_EMPLOYEE</b>: browse Products, add items to Cart, place an Order and see all Orders of all Users
+  - <b>ROLE_MANAGER</b>: browse Products, add items to Cart, place an Order and see all Orders of all Users; create, update, delete Products
+### Online support (by Facebook Messenger's Chat Plugin)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 # Usage
+<i>Here is an example to illustrate the features of this application:</i>
+
+<p align="center">
+    <img src="/src/main/resources/static/images/animation.gif">
+</p>
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
