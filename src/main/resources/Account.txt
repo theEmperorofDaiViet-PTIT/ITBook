@@ -1,0 +1,15 @@
+Username/Password for testing:
+	customer1/123
+	employee1/123
+      manager1/123
+
+Demo product:
+	ID: PYT005
+	Title: Programming Python
+	Price: 52
+	Category: Python
+	Description: If you've mastered Python's fundamentals, you're ready to start using it to get real work done. Programming Python will show you how, with in depth tutorials on the language's primary application domains: system administration, GUIs, and the Web. You'll also explore how Python is used in databases, networking, front end scripting layers, text processing, and more. This book focuses on commonly used tools and libraries to give you a comprehensive understanding of Python’s many roles in practical, real world programming.
+	Language: English
+	Length: 512
+
+
